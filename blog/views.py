@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
-from .models import Event
+from .models import Event, Post
 
 # Create your views here.
 
@@ -19,7 +19,7 @@ def event_detail(request, event_id):
     return render(
         request,
         "events/event_detail.html",
-        {"event:" event}
+        {"event:", event},
     )
 
 def post_detail(request, slug):
