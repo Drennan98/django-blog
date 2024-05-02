@@ -33,7 +33,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "8000-ajgreaves-blog-lesson-pl-lfv6kgfdws.us2.codeanyapp.com",
-    ".herokuapp.com"
+    ".herokuapp.com",
+    "127.0.0.1"
+
 ]
 
 
@@ -150,7 +152,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES = [os.path.join(BASE_DIR, 'static'), ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = [os.path.join(BASE_DIR, 'staticfiles') ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
