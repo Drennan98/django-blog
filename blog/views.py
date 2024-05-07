@@ -1,3 +1,4 @@
+from asyncio import Event
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.contrib import messages
@@ -43,7 +44,7 @@ def post_detail(request, slug):
     comments = post.comments.all().order_by("created_on")
     comment_count = post.comments.filter(approved=True).count()
     if request.method == "POST":
-    comment_form = CommentForm(data=request.POST)
+        comment_form = CommentForm(data=request.POST)
     if comment_form.is_valid():
         comment = comment_form.save(commit=False)
         comment.author = request.user
@@ -54,7 +55,11 @@ def post_detail(request, slug):
             'Comment submitted and awaiting approval'
         )
 
+    if request.method == "POST":
+        print("Received a POST request")
+
     comment_form = CommentForm()
+    print("About to render a template")
 
     return render(
         request,
@@ -66,11 +71,6 @@ def post_detail(request, slug):
          "comment_form": comment_form,
         }
     )
-    
-    queryset = Post.objects.filter(status=1)
-    template_name = "blog/index.html"
-    paginate_by = 6
-
 
 class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1)
