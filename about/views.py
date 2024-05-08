@@ -1,7 +1,8 @@
 from email import message
 from django.contrib import messages
+from django.shortcuts import render
 from .models import About
-from .forms import CollaborateForm
+
 
 # Create your views here.
 
